@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+</head>
+<body>
+    <h1>Hello and welcome to my website.</h1>
+    <h1>Come and create your account.</h1>
+    <input type="text">
+    <input type="email" id="email" placeholder="Example@gmail.com">
+    <button id="btnemail" type="button" onclick="Email()">Continue</button>
+    <button type="button" id="guestbtn" onclick="guest()">Become a guest</button>
+
+    <script type="text/javascript">
+    // ENTER KEY FOR EMAIL FIELD
+    document.getElementById("email").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            Email();
+        }
+    });
+
+    function Email() {
+        let emailInput = document.getElementById("email").value.trim();
+        if (emailInput === "") {
+            alert("Please enter your email address.");
+            return;
+        }
+
+        let code = Math.floor(100000 + Math.random() * 900000);
+        let packageData = {
+            service_id: 'ultizone_noreplay',
+            template_id: 'template_3lgpz9g',
+            user_id: 'cHdcaCmYtUqifAYmW',
+            template_params: {
+                email: emailInput,
+                code: code
+            }
+        };
+
+        fetch("https://emailjs.com", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(packageData)
+        })
+        .then(function(response) {
+            if (response.ok) {
+                localStorage.setItem("VerificationCode", code.toString());
+                localStorage.setItem("UserEmail", emailInput);
+                
+                // ALLOW ACCESS TO VERIFY PAGE AND REDIRECT
+                localStorage.setItem("allowed_verify", "true");
+                // .replace prevents going back
+                window.location.replace("verify.html");
+            } else {
+                return response.text().then(text => {
+                    alert("EmailJS Error: " + text);
+                });
+            }
+        })
+        .catch(function(error) {
+            console.error("Network Error:", error);
+            alert("Network error. Make sure you are connected to the internet.");
+        });
+    }
+
+    // Add your guest function logic here if needed
+    function guest() {
+        // Example: If a guest can go straight to homepage
+        localStorage.setItem("allowed_homepage", "true");
+        window.location.replace("homepage.html");
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <script>
+        // CHECK ACCESS AT THE VERY TOP
+        if (localStorage.getItem("allowed_homepage") !== "true") {
+            window.location.href = "index.html";
+        }
+    </script>
+    <style>
+        .Mathzone{
+            background-image: linear-gradient(cyan,red);
+            width: 250px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .Mathzone1{
+            margin-bottom: 99px;
+            font-size: 50px;
+            color: lightyellow;
+        }
+
+        .mathbtn, .mathbtn a{
+            text-decoration: none;
+            color: black;
+            background-color: aqua;
+        }
+
+        .allmainpageandbg3{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url("https://images.pexels.com/photos/31265958/pexels-photo-31265958.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+@media screen and (max-width: 414px) and (max-height: 896px) { 
+  .allmainpageandbg3 { 
+    width: 100%; 
+    height: 100%; 
+    font-size: 16px; 
+  } 
+}
+
+    </style>
+</head>
+<body class="allmainpageandbg3">
+    <h1>Ultimate Zone</h1>
+    <p>Warning this is not a real website it is a test so if there is anything you would like to tell me <a href="https://www.facebook.com/profile.php?id=61592541224812">Press Here</a></p>
+    <div class="Mathzone">
+        <h1 class="Mathzone1">MathZone</h1>
+        <button class="mathbtn">
+            <a href="./MathZone.html">Play</a>
+        </button>
+    </div>
+</body>
+</html>

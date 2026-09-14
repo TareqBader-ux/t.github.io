@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email</title>
+    <script>
+        // CHECK ACCESS AT THE VERY TOP
+        if (localStorage.getItem("allowed_verify") !== "true") {
+            window.location.replace("index.html");
+        }
+    </script>
+</head>
+<body>
+    <h1>Verify Your Email</h1>
+    <input type="text" id="password" placeholder="Enter verification code">
+    <button id="btnpassword" type="button" onclick="verify()">Submit</button>
+
+    <script>
+        // ENTER KEY FOR VERIFICATION CODE FIELD
+        document.getElementById("password").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                verify();
+            }
+        });
+
+        function verify() {
+            let Code = localStorage.getItem("VerificationCode");
+            let Password = document.getElementById("password").value.trim();
+
+            if (!Code) {
+                alert("No verification code found. Please restart registration.");
+                window.location.replace("index.html");
+                return;
+            }
+
+            if (Password === Code.toString()) {
+                console.log("Code correct");
+                alert("Email verified!");
+                
+                // ALLOW ACCESS TO HOMEPAGE AND REDIRECT
+                localStorage.setItem("allowed_homepage", "true");
+                window.location.replace("homepage.html");
+            } else {
+                alert("Wrong verification code");
+            }
+        }
+    </script>
+</body>
+</html>

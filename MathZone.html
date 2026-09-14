@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .qishenMath{
+            font-size: 100px;
+            background: linear-gradient(green, yellow);
+            border-radius: 30%;
+            padding-left: 65px;
+            padding-right: 65px;
+            padding-bottom: 65px;
+            padding-top: 65px;
+        }
+
+        .bgMath{
+            background: linear-gradient(cyan, red);
+        }
+
+        .allqishenMath{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .correctMath{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: green;
+            font-size: 100px;
+            padding-bottom: 65px;
+            padding-top: 65px;
+            padding-right: 65px;
+            padding-left: 65px;
+            border-radius: 30%;
+        }
+
+        .correctbtnMath{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bgMath">
+    <div id="lvl"></div>
+    <script>
+        let Mathqishen =  Math.floor(Math.random() * 100)+ 1;
+        let Mathqishen2 = Math.floor(Math.random() * 100)+ 1; 
+        
+        let qishenmath = (`${Mathqishen} x ${Mathqishen2}`);
+
+        // 1. Generate the HTML elements
+        document.body.innerHTML += `<div class="allqishenMath"> <h1 class="qishenMath">What is ${qishenmath}</h1> <input type='text' id='answeMath'> <button type='submit' id='btnMath' onclick='Answer1()'>Submit</button> <div id="msg"></div> </div>`;
+
+        let correctAnswer = Mathqishen * Mathqishen2;
+
+        // 2. NOW select the input and add the Enter key listener
+        let answerMathInput = document.getElementById("answeMath");
+        answerMathInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                Answer1(); 
+            }
+        });
+
+        function Answer1() {
+           let userTyped = Number(document.getElementById("answeMath").value);
+           let msgBox = document.getElementById("msg");
+
+           if (userTyped === correctAnswer) {
+               document.body.innerHTML = `
+               <div class="allqishenMath">
+                   <h1 class='correctMath'>Correct, ${Mathqishen} x ${Mathqishen2} is ${correctAnswer}</h1>
+                   <button onclick='Reset()' class='correctbtnMath'>Play Again</button>
+               </div>`;
+           } else {
+               document.body.innerHTML = `
+                   <div class="allqishenMath">
+                       <h1>oh no, it is wrong buuuuut the right answer is "${correctAnswer}"</h1>
+                       <button onclick='Reset(false)' id='btnmathrong'>Try Again</button>
+                   </div>`;
+           }
+
+            console.log(`Qishen: ${Mathqishen} x ${Mathqishen2}`)
+            console.log(`Correct answer: ${correctAnswer}`);
+        }
+
+                let  btnmathrong= document.getElementById("btnmathrong");
+        btnmathrong.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                Reset(); 
+            }
+        });
+
+        function Reset() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
