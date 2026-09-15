@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorZone</title>
+    <style>
+        .allnumber, .btncal{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+            font-size: 100;
+        }     
+        
+        #btncal{
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            justify-content: center;
+            margin-right: 270px;
+            margin-top: px;
+        }
+
+        #screenCal{
+            width: 100%;
+            height: 90%;
+        }
+    </style>
+</head>
+<body>
+   <div class="screenCalall">  <input type="text" readonly id="screenCal">  </div>
+    <div class="allnumber">
+    <div id="number1">
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+    </div>
+    <div id="number2">
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+    </div>
+    <div id="number3">
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+    </div>
+    <div id="number0">
+        <button onclick="appendValue('0')">0</button>
+    </div>
+    </div>
+        <div class="btncal">
+        <button onclick="equal()">=</button>
+        <button onclick="appendValue('+')">+</button>
+        <button onclick="appendValue('-')">-</button>
+        <button onclick="appendValue('*')">x</button>
+        <button onclick="appendValue(')')">)</button>
+        <button onclick="appendValue('(')">(</button>
+        <button onclick="clearValue()">C</button>
+    </div>
+    <script>
+        
+        function appendValue(Val){
+            const screen = document.getElementById ("screenCal");
+
+            screen.value += Val;
+        }
+
+        function equal() {
+
+            const screen = document.getElementById ("screenCal");
+            
+            try {
+                screen.value = eval(screen.value);
+            } catch(error) {
+                screen.value = "Err-cant-solve"
+            }
+            
+        }
+
+        function clearValue() {
+             const screen = document.getElementById ("screenCal");
+
+             screen.value = "";
+        }
+    </script>
+</body>
+</html>

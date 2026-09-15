@@ -19,6 +19,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border-radius: 20%;
         }
         
         .Mathzone1{
@@ -50,16 +51,54 @@
   } 
 }
 
+.CalculatorZone{
+            background-image: linear-gradient(cyan,red);
+            width: 250px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20%;
+            margin-top: 100px;
+}
+
+.calculatorplayer{
+    color: white;
+    margin-bottom: 99px;
+    font-size: 38px;
+}
+
+.btncalculatorplayer, 
+.btncalculatorplayer a{
+            text-decoration: none;
+            color: black;
+            background-color: aqua;
+}
+
+.welcomehomepage{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
     </style>
 </head>
 <body class="allmainpageandbg3">
+    <div class="welcomehomepage">
     <h1>Ultimate Zone</h1>
     <p>Warning this is not a real website it is a test so if there is anything you would like to tell me <a href="https://www.facebook.com/profile.php?id=61592541224812">Press Here</a></p>
+    </div>
     <div class="Mathzone">
         <h1 class="Mathzone1">MathZone</h1>
         <button class="mathbtn">
             <a href="./MathZone.html">Play</a>
         </button>
     </div>
+    <div class="CalculatorZone">
+    <h1 class="calculatorplayer">CalculatorZone</h1>
+    <button class="btncalculatorplayer"><a href="./CalculatorZone.html">Play</a></button>
+</div>
 </body>
 </html>
